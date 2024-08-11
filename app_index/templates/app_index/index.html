@@ -1,9 +1,12 @@
+{% load static %}
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
     <head>
+        <link href="{% static 'public/assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
     </head>
     <body>
-    <div>Hello World</div>
+    <div class="text-primary">Hello World</div>
+        <script src="{% static 'public/assets/dist/js/bootstrap.bundle.min.js' %}"></script>
     </body>
 </html>
 

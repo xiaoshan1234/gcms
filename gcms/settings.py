@@ -116,7 +116,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+# 模板中的 'static' tag 会在 url 添加此前缀
 STATIC_URL = 'static/'
+# 指定静态文件寻找路径
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+# 指定静态文件寻找引擎
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder', # 文件引擎，与 STATICFILES_DIRS 搭配使用
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder', # app 引擎，会在注册的 app 的目录下寻找
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
