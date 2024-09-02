@@ -7,18 +7,18 @@
     <!-- content layout -->
     <div class=" row justify-content-center">
       <!-- sidebar1 -->
-      <div class="col-md-3 d-none d-md-grid">
+      <div class="col-md-1 d-none d-md-grid">
         {% block sidebar1 %}{% endblock sidebar1 %}
       </div>
       <!-- center -->
-      <div class="col-md-6">
-        <div class="text-success fs-1 text-center">Hello World</div>
+      <div class="col-md-10">
+        {% block center %}
+        {% endblock %}
       </div>
       <!-- sidebar2 -->
-      <div id="sidebar2" class="col-md-3 d-none d-md-grid">
+      <div id="sidebar2" class="col-md-1 d-none d-md-grid">
         {% block sidebar2 %}{% endblock sidebar2 %}
       </div>
     </div>   
   </div>  
- 
 {% endblock content %}
