@@ -2,3 +2,5 @@ __pycache__
 static
 db.sqlite3
 *_initial.py
+migrations
+media
