@@ -1,0 +1,71 @@
+{% extends 'public/layout_sms.html' %}
+
+{% block center %}
+<form class="needs-validation" novalidate="" action="/user/register" method="post">
+    {% csrf_token %}
+    <div class="text-center mb-5">
+    <h4>用户注册</h4>
+    </div>
+    
+    <div class="row g-3">
+
+      <div class="col-12">
+        <label for="username" class="form-label">用户名称</label>
+        <div class="input-group has-validation">
+          <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="" value={{form.cleaned_data.username}}>
+          <div class="col-12 ms-2" style="color: red;">
+            {{form.username.errors.0}}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <label for="email" class="form-label">电子邮箱</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" value="{{form.cleaned_data.email}}">
+        <div class="col-12 ms-2" style="color: red;">
+          {{form.email.errors.0}}
+        </div>
+      </div> 
+
+      <div class="col-12">
+        <label for="password" class="form-label">密码</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="" >
+        <div class="col-12 ms-2" style="color: red;">
+          {{form.password.errors.0}}
+        </div>
+      </div> 
+
+      <div class="col-12">
+        <label for="confirm_password" class="form-label">确认密码</label>
+        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="">
+        <div class="col-12 ms-2" style="color: red;">
+          {{form.confirm_password.errors.0}}
+        </div>
+      </div> 
+      <div class="col-12">
+        <label class="form-label" for="customFile">Upload</label>
+        <input type="file" class="form-control" id="customFile" multiple="multiple">
+      </div>
+      
+    </div>
+
+    <hr class="my-4">
+
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input Disabled readonly input" id="common_user" checked ='on' disabled readonly>
+      <label class="form-check-label" for="common_user" >注册成为普通用户</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="novel_author" name="novel_author" {% if is_novel_author %}checked{%endif%}>
+      <label class="form-check-label" for="novel_author">注册成为作者</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="blog_author" name="blog_author" {% if is_blog_author %}checked{%endif%}>
+      <label class="form-check-label" for="blog_author">注册成为博客主</label>
+    </div>
+
+    <hr class="my-4">
+
+    <button class="w-100 btn btn-primary btn-lg" type="submit">注册</button>
+  </form>
+{% endblock center %}
