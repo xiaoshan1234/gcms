@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_index',
     'app_staff_ms',
+    'app_bdms',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,10 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder', # 文件引擎，与 STATICFILES_DIRS 搭配使用
     'django.contrib.staticfiles.finders.AppDirectoriesFinder', # app 引擎，会在注册的 app 的目录下寻找
 ]
+
+# 模板中的 'media' tag 会在 url 添加此前缀
+MEDIA_URL = '/media/' # 对外的 url 访问路径
+MEDIA_ROOT = BASE_DIR / 'media' # 上传文件存储路径
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
