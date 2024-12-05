@@ -4,3 +4,4 @@ db.sqlite3
 *_initial.py
 migrations
 media
+collected_static
