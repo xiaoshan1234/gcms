@@ -16,13 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import include,re_path
+from django.urls import include,re_path,path
 import app_index.views as v_idx
+import app_file_auth.views as v_fa
 
 urlpatterns = [
     re_path(r'^admin/?', admin.site.urls),
     re_path(r'^index/?', v_idx.index),  
     re_path(r'^staff/?', include("app_staff_ms.urls")), 
     re_path(r'^bdms/?', include("app_bdms.urls")),  
+    path('fa/<path:file_path>', v_fa.file_auth),  
     re_path('', v_idx.index)
 ]

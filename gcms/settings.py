@@ -122,6 +122,7 @@ USE_TZ = True
 
 # 模板中的 'static' tag 会在 url 添加此前缀
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "collected_static/"
 # 指定静态文件寻找路径
 STATICFILES_DIRS = [
     BASE_DIR / "static",
@@ -140,3 +141,19 @@ MEDIA_ROOT = BASE_DIR / 'media' # 上传文件存储路径
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import logging
+
+# 日志工厂生产日志工具
+MainLogger = logging.getLogger("MyLogger") 
+# 日志工厂生产日志容器
+fileHandler = logging.FileHandler(BASE_DIR / "gcms.log", mode="a+")
+# 日志工厂生产日志格式
+file_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# 设置日志格式
+fileHandler.setFormatter(file_format)
+# 设置日志容器
+MainLogger.addHandler(fileHandler)
+# 设置日志过滤器
+MainLogger.setLevel(logging.INFO)
