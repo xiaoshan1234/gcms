@@ -1,7 +1,14 @@
-# 文件上传（分块）
-## html-form 
+# 1. 项目部署
+## 1.1. 环境确认
+1. conda + python
+2. django
+3. uwsgi
+4. nginx
+## 
+# 2. 文件上传（分块）
+## 2.1. html-form 
     <input type="file" class="form-control" name="file_data" id="file_data" multiple="multiple">  
-## python-model
+## 2.2. python-model
 ```python
     class FieldData(models.Model):
         class Meta:
@@ -17,14 +24,14 @@
         def __str__(self) -> str:
             return self.owner.username  
 ```
-## python-form
+## 2.3. python-form
 ```python
 class DataCollectForm(forms.ModelForm):
     class Meta:
         model = FieldData
         fields = ["owner","str_data","int_data","file_data"]
 ```        
-## python-view
+## 2.4. python-view
 ```python
 def _collect_post(req:HttpRequest, context:dict) -> HttpResponse:
     post_data = req.POST.copy()
@@ -39,6 +46,6 @@ def _collect_post(req:HttpRequest, context:dict) -> HttpResponse:
         context["form"] = form_obj 
         return render(req,"app_bdms/data_collect.html",context)
 ```
-# 文件下载（分块）
+# 3. 文件下载（分块）
 
-# 文件下载权限管理
+# 4. 文件下载权限管理
