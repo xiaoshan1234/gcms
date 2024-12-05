@@ -18,7 +18,7 @@ server {{
     listen		{PRJ_WEBPORT};
 
     location / {{
-        uwsgi_pass	unix:///run/uswgi-{PRJ_NAME}.sock;
+        uwsgi_pass	unix://{PRJ_ROOJ}/uwsgi-{PRJ_NAME}.sock;
         include		 /etc/nginx/uwsgi_params; 
     }}
 
@@ -45,13 +45,14 @@ with open(NGINX_SITECONF_PRJ,"a") as nginx_file:
     nginx_file.write(NGINX_SITECONF_TEMPLAT)
 
 # uwsgi
+UWSGI_CMD = "/usr/local/conda/envs/django/bin/uwsgi"
 UWSGI_CONF_PRJ = PRJ_ROOJ / f"config/uwsgi-{PRJ_NAME}.ini"
 UWSGI_CONF_TEMPLAT = \
 f"""
 [uwsgi]
 chdir={PRJ_ROOJ}
 module={PRJ_NAME}.wsgi:application
-socket=/run/uwsgi-{PRJ_NAME}.sock
+socket={PRJ_ROOJ}/uwsgi-{PRJ_NAME}.sock
 workers=2
 pidfile=/run/uwsgi-{PRJ_NAME}.pid
 uid=www-data
@@ -74,3 +75,7 @@ sp.run([PYTHON_CMD,"manage.py","collectstatic","--noinput"])
 # database
 sp.run([PYTHON_CMD,"manage.py","makemigrations"])
 sp.run([PYTHON_CMD,"manage.py","migrate"])
+
+# run 
+sp.run(["systemctl","reload","nginx"])
+sp.run([UWSGI_CMD,"--ini",f"config/uwsgi-{PRJ_NAME}.ini"])
