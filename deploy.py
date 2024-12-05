@@ -69,8 +69,8 @@ with open(UWSGI_CONF_PRJ,"a") as uwsgi_file:
     uwsgi_file.write(UWSGI_CONF_TEMPLAT)
 
 # static files
-sp.run([PYTHON_CMD,"manage.py","collectstatic"])
+sp.run([PYTHON_CMD,"manage.py","collectstatic","--noinput"])
 
 # database
-# sp.run([PYTHON_CMD,"manage.py","makemigrations"])
-# sp.run([PYTHON_CMD,"manage.py","migrate"])
+sp.run([PYTHON_CMD,"manage.py","makemigrations"])
+sp.run([PYTHON_CMD,"manage.py","migrate"])
