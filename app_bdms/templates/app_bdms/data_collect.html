@@ -1,7 +1,7 @@
 {% extends 'public/layout_sms.html' %}
 
 {% block center %}
-<form class="needs-validation" novalidate="" enctype="multipart/form-data" action="/bdms/fd_collect" method="post">
+<form class="needs-validation" novalidate="" enctype="multipart/form-data" action="/bdms/data_collect" method="post">
     {% csrf_token %}
     <div class="text-center mb-5">
     <h4>现场数据收集</h4>
