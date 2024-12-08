@@ -22,8 +22,8 @@ server {{
         include		 /etc/nginx/uwsgi_params; 
     }}
 
-    location /collected_static/ {{
-        root {PRJ_ROOJ}/;
+    location /static/ {{
+        alias {PRJ_ROOJ}/collected_static/;
     }}
 
     location /protected_file/ {{
